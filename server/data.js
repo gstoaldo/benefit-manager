@@ -21,13 +21,13 @@ export const EMPLOYEES = [
 export const CLIENTS = [
   {
     id: '1',
-    companyName: 'Acme Co',
+    name: 'Acme Co',
     benefitIds: ['1', '3'],
     employeeIds: ['1'],
   },
   {
     id: '2',
-    companyName: 'Tio Patinhas Bank',
+    name: 'Tio Patinhas Bank',
     benefitIds: ['2', '3', '4'],
     employeeIds: [],
   },
