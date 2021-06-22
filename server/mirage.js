@@ -34,6 +34,23 @@ export function makeServer() {
         const client = schema.db.clients.find(clientId);
         return client.employeeIds.map((id) => schema.db.employees.find(id));
       });
+
+      this.get(
+        '/api/clients/:clientId/employees/:employeeId',
+        (schema, request) => {
+          const { clientId, employeeId } = request.params;
+
+          const client = schema.db.clients.find(clientId);
+
+          const employee = schema.db.employees.find(employeeId);
+
+          if (employee === null || !client.employeeIds.includes(employeeId)) {
+            return new Response(404);
+          }
+
+          return employee;
+        }
+      );
     },
   });
 
