@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const ClientPage = () => {
   const router = useRouter();
@@ -42,6 +43,7 @@ const ClientPage = () => {
 
   return (
     <main>
+      <Link href="/">Voltar para clientes</Link>
       <h1>{client.name}</h1>
       {benefits && (
         <section>
@@ -58,7 +60,12 @@ const ClientPage = () => {
         <section>
           <h2>Funcionários</h2>
           {employees.map((employee) => (
-            <pre key={employee.id}>{JSON.stringify(employee, '', 2)}</pre>
+            <Link
+              key={employee.id}
+              href={`/client/${clientId}/employee/${employee.id}`}
+            >
+              <pre>{JSON.stringify(employee, '', 2)}</pre>
+            </Link>
           ))}
         </section>
       )}
