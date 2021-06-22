@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 const Home = () => {
   const [clients, setClients] = useState([]);
@@ -14,15 +15,13 @@ const Home = () => {
     getClients();
   }, []);
 
-  console.log(`clients`, clients);
-
   return (
     <div>
       <h1>Clientes</h1>
       <ul>
         {clients.map((client) => (
           <li key={client.id}>
-            <p>{client.name}</p>
+            <Link href={`/client/${client.id}`}>{client.name}</Link>
           </li>
         ))}
       </ul>

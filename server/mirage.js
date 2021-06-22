@@ -18,7 +18,10 @@ export function makeServer() {
         return schema.db.clients;
       });
 
-      this.passthrough('api/partner');
+      this.get('/api/clients/:clientId', (schema, request) => {
+        const { clientId } = request.params;
+        return schema.db.clients.find(clientId);
+      });
     },
   });
 
