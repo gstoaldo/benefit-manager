@@ -48,13 +48,13 @@ export const BENEFITS = [
   },
   {
     id: '3',
-    type: 'health',
+    type: 'dental',
     name: 'Dental Sorriso',
     requiredFields: ['name', 'cpf', 'weight', 'height'],
   },
   {
     id: '4',
-    type: 'health',
+    type: 'mental',
     name: 'Mente Sã, Corpo São',
     requiredFields: ['cpf', 'meditationHoursInWeek'],
   },
