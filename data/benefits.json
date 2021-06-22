@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "type": "health",
+    "name": "Norte Europa",
+    "requiredFields": ["name", "cpf", "admissionDate", "email"]
+  },
+  {
+    "id": "2",
+    "type": "health",
+    "name": "Pompulha Intermédica",
+    "requiredFields": ["name", "cpf", "admissionDate", "address"]
+  },
+  {
+    "id": "3",
+    "type": "dental",
+    "name": "Dental Sorriso",
+    "requiredFields": ["name", "cpf", "weight", "height"]
+  },
+  {
+    "id": "4",
+    "type": "mental",
+    "name": "Mente Sã, Corpo São",
+    "requiredFields": ["cpf", "meditationHoursInWeek"]
+  }
+]

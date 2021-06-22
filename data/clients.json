@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "name": "Acme Co",
+    "benefitIds": ["1", "3"],
+    "employeeIds": ["1"]
+  },
+  {
+    "id": "2",
+    "name": "Tio Patinhas Bank",
+    "benefitIds": ["2", "3", "4"],
+    "employeeIds": []
+  }
+]

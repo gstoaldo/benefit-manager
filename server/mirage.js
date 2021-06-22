@@ -1,5 +1,5 @@
 import { createServer } from 'miragejs';
-import { BENEFITS, CLIENTS, EMPLOYEES } from './data';
+import { BENEFITS, EMPLOYEES, CLIENTS } from '../data';
 
 export function makeServer() {
   const server = createServer({

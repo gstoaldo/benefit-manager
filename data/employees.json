@@ -1,0 +1,19 @@
+[
+  {
+    "id": "1",
+    "name": "Maria Silva",
+    "cpf": "09222123567",
+    "email": "mariasilva@empr.br",
+    "address": {
+      "cep": "01310400",
+      "street": "Av Paulista",
+      "city": "São Paulo",
+      "district": "São Paulo",
+      "complement": "apto 88"
+    },
+    "weight": 62,
+    "height": 1.6,
+    "meditationHoursInWeek": 5.3,
+    "benefitIds": ["1", "3"]
+  }
+]
