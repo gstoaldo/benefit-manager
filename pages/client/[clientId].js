@@ -6,6 +6,7 @@ const ClientPage = () => {
   const { clientId } = router.query;
   const [client, setClient] = useState(null);
   const [benefits, setBenefits] = useState(null);
+  const [employees, setEmployees] = useState(null);
 
   useEffect(() => {
     const getClient = async () => {
@@ -18,20 +19,26 @@ const ClientPage = () => {
       const res = await fetch(`/api/clients/${clientId}/benefits`);
       if (res.ok) {
         const data = await res.json();
-        console.log(`data`, data);
         setBenefits(data);
+      }
+    };
+
+    const getEmployees = async () => {
+      const res = await fetch(`/api/clients/${clientId}/employees`);
+      if (res.ok) {
+        const data = await res.json();
+        setEmployees(data);
       }
     };
 
     getClient();
     getBenefits();
+    getEmployees();
   }, [clientId]);
 
   if (client === null) {
     return null;
   }
-
-  console.log(`benefits`, benefits);
 
   return (
     <main>
@@ -44,6 +51,14 @@ const ClientPage = () => {
               <h1>{benefit.name}</h1>
               <h2>{benefit.type}</h2>
             </article>
+          ))}
+        </section>
+      )}
+      {employees && (
+        <section>
+          <h2>Funcionários</h2>
+          {employees.map((employee) => (
+            <pre key={employee.id}>{JSON.stringify(employee, '', 2)}</pre>
           ))}
         </section>
       )}
