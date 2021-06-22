@@ -28,6 +28,12 @@ export function makeServer() {
         const { benefitIds } = schema.db.clients.find(clientId);
         return benefitIds.map((id) => schema.db.benefits.find(id));
       });
+
+      this.get('/api/clients/:clientId/employees', (schema, request) => {
+        const { clientId } = request.params;
+        const client = schema.db.clients.find(clientId);
+        return client.employeeIds.map((id) => schema.db.employees.find(id));
+      });
     },
   });
 
