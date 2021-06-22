@@ -1,0 +1,27 @@
+{
+  "name": "benefit-manager",
+  "version": "1.0.0",
+  "description": "Web application to manage health benefits",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StollToaldo/benefit-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StollToaldo/benefit-manager/issues"
+  },
+  "homepage": "https://github.com/StollToaldo/benefit-manager#readme",
+  "dependencies": {
+    "next": "^11.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
