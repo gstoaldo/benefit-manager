@@ -39,9 +39,7 @@ export function makeServer() {
         '/api/clients/:clientId/employees/:employeeId',
         (schema, request) => {
           const { clientId, employeeId } = request.params;
-
           const client = schema.db.clients.find(clientId);
-
           const employee = schema.db.employees.find(employeeId);
 
           if (employee === null || !client.employeeIds.includes(employeeId)) {
@@ -51,6 +49,16 @@ export function makeServer() {
           return employee;
         }
       );
+
+      this.post('/api/clients/:clientId/employees', (schema, request) => {
+        const { clientId } = request.params;
+        const employee = schema.db.employees.insert({});
+        const client = schema.db.clients.find(clientId);
+
+        return schema.db.clients.update(clientId, {
+          employeeIds: [...client.employeeIds, employee.id],
+        });
+      });
     },
   });
 

@@ -24,6 +24,11 @@ const ClientPage = () => {
       }
     };
 
+    getClient();
+    getBenefits();
+  }, [clientId]);
+
+  useEffect(() => {
     const getEmployees = async () => {
       const res = await fetch(`/api/clients/${clientId}/employees`);
       if (res.ok) {
@@ -32,10 +37,18 @@ const ClientPage = () => {
       }
     };
 
-    getClient();
-    getBenefits();
     getEmployees();
-  }, [clientId]);
+  }, [clientId, client]);
+
+  const addEmployee = async () => {
+    const res = await fetch(`/api/clients/${clientId}/employees`, {
+      method: 'POST',
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setClient(data);
+    }
+  };
 
   if (client === null) {
     return null;
@@ -56,10 +69,11 @@ const ClientPage = () => {
           ))}
         </section>
       )}
-      {employees && (
-        <section>
-          <h2>Funcionários</h2>
-          {employees.map((employee) => (
+      <section>
+        <h2>Funcionários</h2>
+        <button onClick={addEmployee}>Adicionar colaborador</button>
+        {employees &&
+          employees.map((employee) => (
             <Link
               key={employee.id}
               href={`/client/${clientId}/employee/${employee.id}`}
@@ -67,8 +81,7 @@ const ClientPage = () => {
               <pre>{JSON.stringify(employee, '', 2)}</pre>
             </Link>
           ))}
-        </section>
-      )}
+      </section>
     </main>
   );
 };
