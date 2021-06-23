@@ -13,6 +13,7 @@ export function makeServer() {
 
     routes() {
       this.passthrough('/_next/static/development/_devPagesManifest.json');
+      this.timing = 2000;
 
       this.get('/api/clients', (schema) => {
         return schema.db.clients;
