@@ -23,7 +23,7 @@ const App = ({ children }) => {
   return (
     <FetchContext.Provider value={{ fetchHandler }}>
       {loading && <Loading />}
-      {error.error && <Error>{error.message}</Error>}
+      {error.error && !loading && <Error>{error.message}</Error>}
       <div>{children}</div>
     </FetchContext.Provider>
   );
