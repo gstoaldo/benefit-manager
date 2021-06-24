@@ -61,7 +61,8 @@ export function makeServer() {
 
       this.post('/clients/:clientId/employees', (schema, request) => {
         const { clientId } = request.params;
-        const employee = schema.db.employees.insert({});
+        const NEW_EMPLOYEE_FIELDS = { benefitIds: [] };
+        const employee = schema.db.employees.insert(NEW_EMPLOYEE_FIELDS);
         const client = schema.db.clients.find(clientId);
         const updatedClient = schema.db.clients.update(clientId, {
           employeeIds: [...client.employeeIds, employee.id],
