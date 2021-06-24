@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import useLoading from 'hooks/useLoading';
 
 const ClientPage = () => {
   const router = useRouter();
@@ -9,7 +8,10 @@ const ClientPage = () => {
   const [client, setClient] = useState(null);
   const [benefits, setBenefits] = useState(null);
   const [employees, setEmployees] = useState(null);
-  const { setLoading } = useLoading();
+
+  const setLoading = () => {
+    return null;
+  };
 
   useEffect(() => {
     const getClient = async () => {

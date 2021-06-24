@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import useFetchHandler from 'hooks/useFetchHandler';
+import { getClients } from 'server/api';
 
 const Home = () => {
   const [clients, setClients] = useState([]);
+  const fetchHandler = useFetchHandler();
 
   useEffect(() => {
-    const getClients = async () => {
-      const res = await fetch('/api/clients');
-      const data = await res.json();
-
+    fetchHandler(async () => {
+      const data = await getClients();
       setClients(data);
-    };
-
-    getClients();
-  }, []);
+    }, 'Erro ao carregar clientes.');
+  }, [fetchHandler]);
 
   return (
     <div>

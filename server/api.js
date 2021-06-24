@@ -1,3 +1,9 @@
+export async function getClients() {
+  const url = `/api/clients`;
+  const res = await fetch(url);
+  return handleResponse(res);
+}
+
 export async function getEmployee(clientId, employeeId) {
   const url = `/api/clients/${clientId}/employees/${employeeId}`;
   const res = await fetch(url);
@@ -7,7 +13,6 @@ export async function getEmployee(clientId, employeeId) {
 export async function getEmployees(clientId) {
   const url = `/api/clients/${clientId}/employees`;
   const res = await fetch(url);
-  console.log(`res`, res);
   return handleResponse(res);
 }
 
