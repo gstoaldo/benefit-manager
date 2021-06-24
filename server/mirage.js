@@ -13,37 +13,39 @@ export function makeServer() {
 
     routes() {
       this.passthrough('/_next/static/development/_devPagesManifest.json');
+      this.passthrough('/api/partner');
+      this.namespace = '/api';
       this.timing = 2000;
 
-      this.get('/api/clients', (schema) => {
+      this.get('/clients', (schema) => {
         return schema.db.clients;
       });
 
-      this.get('/api/clients/:clientId', (schema, request) => {
+      this.get('/clients/:clientId', (schema, request) => {
         const { clientId } = request.params;
         const client = schema.db.clients.find(clientId);
         return clientWithEmployees(client, schema.db.employees);
       });
 
-      this.get('/api/clients/:clientId/benefits', (schema, request) => {
+      this.get('/clients/:clientId/benefits', (schema, request) => {
         const { clientId } = request.params;
         const { benefitIds } = schema.db.clients.find(clientId);
         return benefitIds.map((id) => schema.db.benefits.find(id));
       });
 
-      this.get('/api/clients/:clientId/employees', (schema, request) => {
+      this.get('/clients/:clientId/employees', (schema, request) => {
         const { clientId } = request.params;
         const client = schema.db.clients.find(clientId);
         return client.employeeIds.map((id) => schema.db.employees.find(id));
       });
 
-      this.get('/api/benefits/:benefitId', (schema, request) => {
+      this.get('/benefits/:benefitId', (schema, request) => {
         const { benefitId } = request.params;
         return schema.db.benefits.find(benefitId);
       });
 
       this.get(
-        '/api/clients/:clientId/employees/:employeeId',
+        '/clients/:clientId/employees/:employeeId',
         (schema, request) => {
           const { clientId, employeeId } = request.params;
           const client = schema.db.clients.find(clientId);
@@ -57,7 +59,7 @@ export function makeServer() {
         }
       );
 
-      this.post('/api/clients/:clientId/employees', (schema, request) => {
+      this.post('/clients/:clientId/employees', (schema, request) => {
         const { clientId } = request.params;
         const employee = schema.db.employees.insert({});
         const client = schema.db.clients.find(clientId);
@@ -69,7 +71,7 @@ export function makeServer() {
       });
 
       this.put(
-        '/api/clients/:clientId/employees/:employeeId',
+        '/clients/:clientId/employees/:employeeId',
         (schema, request) => {
           const { clientId, employeeId } = request.params;
           const attrs = JSON.parse(request.requestBody);
@@ -84,8 +86,6 @@ export function makeServer() {
           return new Response(404);
         }
       );
-
-      this.passthrough('api/partner');
     },
   });
 

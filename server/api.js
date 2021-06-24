@@ -52,14 +52,6 @@ export async function getBenefit(benefitId) {
   return handleResponse(res);
 }
 
-function handleResponse(res) {
-  if (!res.ok) {
-    throw new Error(res.statusText);
-  }
-
-  return res.json();
-}
-
 export async function sendBenefitData(clientId, employeeId, benefitId) {
   const employee = await getEmployee(clientId, employeeId);
   const benefit = await getBenefit(benefitId);
@@ -70,12 +62,7 @@ export async function sendBenefitData(clientId, employeeId, benefitId) {
     throw new Error('Invalid data');
   }
 
-  const requiredEmployeeData = filterEmployeeData(
-    employee,
-    benefit.requiredFields
-  );
-
-  await fetchPartnerAPI(requiredEmployeeData);
+  await fetchPartnerAPI(filterEmployeeData(employee, benefit.requiredFields));
 
   return updateEmployee(clientId, employeeId, {
     ...employee,
@@ -84,7 +71,8 @@ export async function sendBenefitData(clientId, employeeId, benefitId) {
 }
 
 async function fetchPartnerAPI(employeeData) {
-  const res = await fetch('/api/partner', {
+  const url = '/api/partner';
+  const res = await fetch(url, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -94,4 +82,12 @@ async function fetchPartnerAPI(employeeData) {
   });
 
   return handleResponse(res);
+}
+
+function handleResponse(res) {
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+
+  return res.json();
 }

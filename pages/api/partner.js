@@ -3,6 +3,6 @@ export default function handler(req, res) {
     const employeeData = req.body;
     res.status(200).json(employeeData);
   } else {
-    res.status(405);
+    res.status(405).end();
   }
 }
