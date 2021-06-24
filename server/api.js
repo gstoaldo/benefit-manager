@@ -24,6 +24,20 @@ export async function createEmployee(clientId) {
   return handleResponse(res);
 }
 
+export async function updateEmployee(clientId, employeeId, data) {
+  const url = `/api/clients/${clientId}/employees/${employeeId}`;
+  const res = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  return handleResponse(res);
+}
+
 export async function getBenefits(clientId) {
   const url = `/api/clients/${clientId}/benefits`;
   const res = await fetch(url);

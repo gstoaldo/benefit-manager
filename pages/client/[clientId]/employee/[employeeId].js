@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import useFetchHandler from 'hooks/useFetchHandler';
-import { getEmployee, getBenefits } from 'server/api';
+import { getEmployee, getBenefits, updateEmployee } from 'server/api';
 import { getUniqueRequiredFields } from 'utils/form';
 import Input from 'components/Input';
 
@@ -29,6 +29,13 @@ const EmployeePage = () => {
     }
   }, [clientId, employeeId, fetchHandler]);
 
+  const handleUpdateEmployee = () => {
+    fetchHandler(async () => {
+      const data = await updateEmployee(clientId, employeeId, employee);
+      setEmployee(data);
+    }, 'Erro ao salvar dados do colaborador.');
+  };
+
   const handleInput = (event) => {
     const { name, value } = event.target;
     setEmployee({ ...employee, [name]: value });
@@ -41,20 +48,28 @@ const EmployeePage = () => {
       <Link href={`/client/${clientId}`}>Voltar para painel</Link>
       <h1>{employee.name}</h1>
       <h2>Dados</h2>
-      <form>
-        <ul>
-          {requiredFields.map((field) => {
-            return (
-              <Input
-                key={field}
-                label={field}
-                name={field}
-                value={employee[field]}
-                onChange={handleInput}
-              />
-            );
-          })}
-        </ul>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleUpdateEmployee();
+        }}
+      >
+        {requiredFields && (
+          <ul>
+            {requiredFields.map((field) => {
+              return (
+                <Input
+                  key={field}
+                  label={field}
+                  name={field}
+                  value={employee[field]}
+                  onChange={handleInput}
+                />
+              );
+            })}
+          </ul>
+        )}
+        <button type="submit">Salvar dados</button>
       </form>
     </main>
   );

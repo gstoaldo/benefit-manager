@@ -62,6 +62,23 @@ export function makeServer() {
 
         return clientWithEmployees(updatedClient, schema.db.employees);
       });
+
+      this.put(
+        '/api/clients/:clientId/employees/:employeeId',
+        (schema, request) => {
+          const { clientId, employeeId } = request.params;
+          const attrs = JSON.parse(request.requestBody);
+
+          const employee = schema.db.employees.find(employeeId);
+          const client = schema.db.clients.find(clientId);
+
+          if (client.employeeIds.includes(employee.id)) {
+            return schema.db.employees.update(employeeId, attrs);
+          }
+
+          return new Response(404);
+        }
+      );
     },
   });
 
