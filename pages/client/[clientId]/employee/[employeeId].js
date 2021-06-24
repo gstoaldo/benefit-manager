@@ -1,29 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import useFetchHandler from 'hooks/useFetchHandler';
+import { getEmployee } from 'server/api';
 
 const EmployeePage = () => {
   const router = useRouter();
   const { clientId, employeeId } = router.query;
   const [employee, setEmployee] = useState(null);
-
-  const setLoading = () => null;
+  const fetchHandler = useFetchHandler();
 
   useEffect(() => {
-    const getEmployee = async () => {
-      setLoading(true);
-      const res = await fetch(
-        `/api/clients/${clientId}/employees/${employeeId}`
-      );
-      if (res.ok) {
-        const data = await res.json();
+    if (clientId !== undefined && employeeId !== undefined) {
+      fetchHandler(async () => {
+        const data = await getEmployee(clientId, employeeId);
         setEmployee(data);
-      }
-      setLoading(false);
-    };
-
-    getEmployee();
-  }, [clientId, employeeId, setLoading]);
+      }, 'Erro ao carregar dados do colaborador');
+    }
+  }, [clientId, employeeId, fetchHandler]);
 
   if (employee === null) return null;
 
