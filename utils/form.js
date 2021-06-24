@@ -14,3 +14,7 @@ export function filterEmployeeData(employeeData, requiredFields) {
     {}
   );
 }
+
+export function validateEmployeeData(employeeData, requiredFields) {
+  return requiredFields.every((field) => employeeData[field] !== undefined);
+}

@@ -13,7 +13,7 @@ export function makeServer() {
 
     routes() {
       this.passthrough('/_next/static/development/_devPagesManifest.json');
-      this.timing = 3000;
+      this.timing = 2000;
 
       this.get('/api/clients', (schema) => {
         return schema.db.clients;
@@ -35,6 +35,11 @@ export function makeServer() {
         const { clientId } = request.params;
         const client = schema.db.clients.find(clientId);
         return client.employeeIds.map((id) => schema.db.employees.find(id));
+      });
+
+      this.get('/api/benefits/:benefitId', (schema, request) => {
+        const { benefitId } = request.params;
+        return schema.db.benefits.find(benefitId);
       });
 
       this.get(
@@ -79,6 +84,8 @@ export function makeServer() {
           return new Response(404);
         }
       );
+
+      this.passthrough('api/partner');
     },
   });
 

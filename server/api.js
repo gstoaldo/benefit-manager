@@ -1,3 +1,5 @@
+import { filterEmployeeData, validateEmployeeData } from 'utils/form';
+
 export async function getClients() {
   const url = `/api/clients`;
   const res = await fetch(url);
@@ -44,10 +46,52 @@ export async function getBenefits(clientId) {
   return handleResponse(res);
 }
 
+export async function getBenefit(benefitId) {
+  const url = `/api/benefits/${benefitId}`;
+  const res = await fetch(url);
+  return handleResponse(res);
+}
+
 function handleResponse(res) {
   if (!res.ok) {
     throw new Error(res.statusText);
   }
 
   return res.json();
+}
+
+export async function sendBenefitData(clientId, employeeId, benefitId) {
+  const employee = await getEmployee(clientId, employeeId);
+  const benefit = await getBenefit(benefitId);
+
+  const isValid = validateEmployeeData(employee, benefit.requiredFields);
+
+  if (!isValid) {
+    throw new Error('Invalid data');
+  }
+
+  const requiredEmployeeData = filterEmployeeData(
+    employee,
+    benefit.requiredFields
+  );
+
+  await fetchPartnerAPI(requiredEmployeeData);
+
+  return updateEmployee(clientId, employeeId, {
+    ...employee,
+    benefitIds: [...employee.benefitIds, benefitId],
+  });
+}
+
+async function fetchPartnerAPI(employeeData) {
+  const res = await fetch('/api/partner', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(employeeData),
+  });
+
+  return handleResponse(res);
 }

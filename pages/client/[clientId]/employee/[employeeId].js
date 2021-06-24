@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import useFetchHandler from 'hooks/useFetchHandler';
-import { getEmployee, getBenefits, updateEmployee } from 'server/api';
+import {
+  getEmployee,
+  getBenefits,
+  updateEmployee,
+  sendBenefitData,
+} from 'server/api';
 import { getUniqueRequiredFields } from 'utils/form';
 import Input from 'components/Input';
 
@@ -34,6 +39,13 @@ const EmployeePage = () => {
       const data = await updateEmployee(clientId, employeeId, employee);
       setEmployee(data);
     }, 'Erro ao salvar dados do colaborador.');
+  };
+
+  const handleSendBenefitData = async (benefitId) => {
+    fetchHandler(async () => {
+      const data = await sendBenefitData(clientId, employeeId, benefitId);
+      setEmployee(data);
+    }, 'Erro ao enviar dados');
   };
 
   const handleInput = (event) => {
@@ -79,6 +91,12 @@ const EmployeePage = () => {
               <li key={benefit.id}>
                 <article>
                   <pre>{JSON.stringify(benefit, '', 2)}</pre>
+                  <button
+                    onClick={() => handleSendBenefitData(benefit.id)}
+                    disabled={employee.benefitIds.includes(benefit.id)}
+                  >
+                    Enviar
+                  </button>
                 </article>
               </li>
             );
