@@ -69,8 +69,22 @@ const EmployeePage = () => {
             })}
           </ul>
         )}
+
         <button type="submit">Salvar dados</button>
       </form>
+      {benefits && (
+        <ul>
+          {benefits.map((benefit) => {
+            return (
+              <li key={benefit.id}>
+                <article>
+                  <pre>{JSON.stringify(benefit, '', 2)}</pre>
+                </article>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </main>
   );
 };
