@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import useLoading from 'hooks/useLoading';
 
 const EmployeePage = () => {
   const router = useRouter();
   const { clientId, employeeId } = router.query;
   const [employee, setEmployee] = useState(null);
-  const { setLoading } = useLoading();
+
+  const setLoading = () => null;
 
   useEffect(() => {
     const getEmployee = async () => {

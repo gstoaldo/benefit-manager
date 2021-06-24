@@ -13,7 +13,7 @@ export function makeServer() {
 
     routes() {
       this.passthrough('/_next/static/development/_devPagesManifest.json');
-      this.timing = 2000;
+      this.timing = 3000;
 
       this.get('/api/clients', (schema) => {
         return schema.db.clients;
@@ -21,7 +21,8 @@ export function makeServer() {
 
       this.get('/api/clients/:clientId', (schema, request) => {
         const { clientId } = request.params;
-        return schema.db.clients.find(clientId);
+        const client = schema.db.clients.find(clientId);
+        return clientWithEmployees(client, schema.db.employees);
       });
 
       this.get('/api/clients/:clientId/benefits', (schema, request) => {
@@ -55,13 +56,21 @@ export function makeServer() {
         const { clientId } = request.params;
         const employee = schema.db.employees.insert({});
         const client = schema.db.clients.find(clientId);
-
-        return schema.db.clients.update(clientId, {
+        const updatedClient = schema.db.clients.update(clientId, {
           employeeIds: [...client.employeeIds, employee.id],
         });
+
+        return clientWithEmployees(updatedClient, schema.db.employees);
       });
     },
   });
 
   return server;
+}
+
+function clientWithEmployees(client, employeesDB) {
+  return {
+    ...client,
+    employees: client.employeeIds.map((id) => employeesDB.find(id)),
+  };
 }
