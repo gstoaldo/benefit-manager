@@ -1,5 +1,6 @@
+import 'styles.css';
 import App from 'components/App';
-import { makeServer } from '../server/mirage';
+import { makeServer } from 'server/mirage';
 
 makeServer();
 
