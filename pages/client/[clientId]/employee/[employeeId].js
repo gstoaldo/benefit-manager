@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import useLoading from 'hooks/useLoading';
 
 const EmployeePage = () => {
   const router = useRouter();
   const { clientId, employeeId } = router.query;
   const [employee, setEmployee] = useState(null);
+  const { setLoading } = useLoading();
 
   useEffect(() => {
     const getEmployee = async () => {
+      setLoading(true);
       const res = await fetch(
         `/api/clients/${clientId}/employees/${employeeId}`
       );
@@ -16,10 +19,11 @@ const EmployeePage = () => {
         const data = await res.json();
         setEmployee(data);
       }
+      setLoading(false);
     };
 
     getEmployee();
-  }, [clientId, employeeId]);
+  }, [clientId, employeeId, setLoading]);
 
   if (employee === null) return null;
 

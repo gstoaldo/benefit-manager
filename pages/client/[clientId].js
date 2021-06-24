@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import useLoading from 'hooks/useLoading';
 
 const ClientPage = () => {
   const router = useRouter();
@@ -8,39 +9,47 @@ const ClientPage = () => {
   const [client, setClient] = useState(null);
   const [benefits, setBenefits] = useState(null);
   const [employees, setEmployees] = useState(null);
+  const { setLoading } = useLoading();
 
   useEffect(() => {
     const getClient = async () => {
+      setLoading(true);
       const res = await fetch(`/api/clients/${clientId}`);
       const data = await res.json();
       setClient(data);
+      setLoading(false);
     };
 
     const getBenefits = async () => {
+      setLoading(true);
       const res = await fetch(`/api/clients/${clientId}/benefits`);
       if (res.ok) {
         const data = await res.json();
         setBenefits(data);
       }
+      setLoading(false);
     };
 
     getClient();
     getBenefits();
-  }, [clientId]);
+  }, [clientId, setLoading]);
 
   useEffect(() => {
     const getEmployees = async () => {
+      setLoading(true);
       const res = await fetch(`/api/clients/${clientId}/employees`);
       if (res.ok) {
         const data = await res.json();
         setEmployees(data);
       }
+      setLoading(false);
     };
 
     getEmployees();
-  }, [clientId, client]);
+  }, [clientId, client, setLoading]);
 
   const addEmployee = async () => {
+    setLoading(true);
     const res = await fetch(`/api/clients/${clientId}/employees`, {
       method: 'POST',
     });
@@ -48,6 +57,7 @@ const ClientPage = () => {
       const data = await res.json();
       setClient(data);
     }
+    setLoading(false);
   };
 
   if (client === null) {
