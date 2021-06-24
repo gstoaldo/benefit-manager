@@ -43,12 +43,16 @@ const ClientPage = () => {
       {benefits && (
         <section>
           <h2>Benefícios</h2>
-          {benefits.map((benefit) => (
-            <article key={benefit.id}>
-              <h1>{benefit.name}</h1>
-              <h2>{benefit.type}</h2>
-            </article>
-          ))}
+          <ul>
+            {benefits.map((benefit) => (
+              <li key={benefit.id}>
+                <article>
+                  <h1>{benefit.name}</h1>
+                  <h2>{benefit.type}</h2>
+                </article>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
       <section>
