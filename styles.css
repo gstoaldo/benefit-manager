@@ -6,6 +6,11 @@ html {
   --color-secondary: hsl(335deg 100% 93%);
   --color-black: hsl(0deg 0% 20%);
   --color-white: hsl(0deg 0% 100%);
+
+  /* font sizes */
+  --f1: 1rem;
+  --f2: 1.5rem;
+  --f3: 3rem;
 }
 
 body {
