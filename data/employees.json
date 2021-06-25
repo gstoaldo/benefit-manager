@@ -15,5 +15,22 @@
     "height": 1.6,
     "meditationHoursInWeek": 5.3,
     "benefitIds": []
+  },
+  {
+    "id": "2",
+    "name": "Tim Maia ",
+    "cpf": "09222123567",
+    "email": "tim@maia.br",
+    "address": {
+      "cep": "01310400",
+      "street": "Av Paulista",
+      "city": "São Paulo",
+      "district": "São Paulo",
+      "complement": "apto 88"
+    },
+    "weight": 62,
+    "height": 1.6,
+    "meditationHoursInWeek": 5.3,
+    "benefitIds": ["1", "3"]
   }
 ]

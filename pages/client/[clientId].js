@@ -7,6 +7,7 @@ import PageHeader from 'components/PageHeader';
 import PageSection from 'components/PageSection';
 import Button from 'components/Button';
 import BenefitCard from 'components/BenefitCard';
+import EmployeeCard from 'components/EmployeeCard';
 
 const ClientPage = () => {
   const router = useRouter();
@@ -36,9 +37,11 @@ const ClientPage = () => {
     }, 'Erro ao adicionar colaborador.');
   };
 
-  if (client === null) {
+  if (client === null || benefits === null) {
     return null;
   }
+
+  console.log(`client.employees`, client.employees);
 
   return (
     <>
@@ -68,12 +71,14 @@ const ClientPage = () => {
           action={<Button onClick={addEmployee}>Adicionar colaborador</Button>}
         >
           {client.employees.map((employee) => (
-            <Link
+            <EmployeeCard
               key={employee.id}
+              employee={employee}
+              benefits={benefits.filter((benefit) =>
+                employee.benefitIds.includes(benefit.id)
+              )}
               href={`/client/${clientId}/employee/${employee.id}`}
-            >
-              <pre>{JSON.stringify(employee, '', 2)}</pre>
-            </Link>
+            ></EmployeeCard>
           ))}
         </PageSection>
       </main>

@@ -8,7 +8,7 @@ const BaseButton = styled.button`
   font-size: var(--f1);
   font-weight: bold;
   color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  border: 2px solid currentColor;
   padding: 8px 16px;
   border-radius: 5px;
   background: transparent;

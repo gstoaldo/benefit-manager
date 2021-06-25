@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { benefitTypeLabels } from 'utils/benefit';
+import Card from './Card';
 
 const BenefitCard = ({ benefit }) => (
   <Card>
@@ -7,13 +8,6 @@ const BenefitCard = ({ benefit }) => (
     <BenefitType>{benefitTypeLabels[benefit.type]}</BenefitType>
   </Card>
 );
-
-const Card = styled.article`
-  border: 2px solid var(--color-primary-light);
-  border-radius: var(--border-radius);
-  padding: 16px;
-  margin: 16px 0;
-`;
 
 const BenefitName = styled.h3`
   font-weight: bold;

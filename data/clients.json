@@ -3,7 +3,7 @@
     "id": "1",
     "name": "Acme Co",
     "benefitIds": ["1", "3"],
-    "employeeIds": ["1"]
+    "employeeIds": ["1", "2"]
   },
   {
     "id": "2",
