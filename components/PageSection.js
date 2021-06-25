@@ -17,6 +17,7 @@ const Section = styled.section`
 const Header = styled.header`
   padding: 32px 0;
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
   gap: 16px;
 `;

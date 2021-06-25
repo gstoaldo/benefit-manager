@@ -12,6 +12,8 @@ html {
   --f2: 1.5rem;
   --f3: 3rem;
 
+  --border-radius: 5px;
+
   --max-page-width: 1200px;
 }
 

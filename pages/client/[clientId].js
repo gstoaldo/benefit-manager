@@ -6,6 +6,7 @@ import useFetchHandler from 'hooks/useFetchHandler';
 import PageHeader from 'components/PageHeader';
 import PageSection from 'components/PageSection';
 import Button from 'components/Button';
+import BenefitCard from 'components/BenefitCard';
 
 const ClientPage = () => {
   const router = useRouter();
@@ -56,10 +57,7 @@ const ClientPage = () => {
             <ul>
               {benefits.map((benefit) => (
                 <li key={benefit.id}>
-                  <article>
-                    <h1>{benefit.name}</h1>
-                    <h2>{benefit.type}</h2>
-                  </article>
+                  <BenefitCard benefit={benefit}></BenefitCard>
                 </li>
               ))}
             </ul>
