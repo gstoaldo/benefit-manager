@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import useFetchHandler from 'hooks/useFetchHandler';
 import { getClients } from 'server/api';
+import styled from 'styled-components';
 
 const Home = () => {
   const [clients, setClients] = useState([]);
@@ -27,5 +28,9 @@ const Home = () => {
     </div>
   );
 };
+
+// const List = styled.ul`
+//   lis
+// `
 
 export default Home;

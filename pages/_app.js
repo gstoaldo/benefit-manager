@@ -1,4 +1,5 @@
 import 'styles.css';
+import 'normalize.css';
 import App from 'components/App';
 import { makeServer } from 'server/mirage';
 
