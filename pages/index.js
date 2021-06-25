@@ -17,16 +17,38 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Clientes</h1>
-      <ul>
+      <Header>
+        <h1>Clientes</h1>
+      </Header>
+      <List>
         {clients.map((client) => (
           <li key={client.id}>
-            <Link href={`/client/${client.id}`}>{client.name}</Link>
+            <Link href={`/client/${client.id}`} passHref>
+              <ClientLink>{client.name}</ClientLink>
+            </Link>
           </li>
         ))}
-      </ul>
+      </List>
     </div>
   );
 };
+
+const Header = styled.header`
+  padding: 32px;
+`;
+
+const List = styled.ul`
+  padding: 32px;
+`;
+
+const ClientLink = styled.a`
+  color: var(--color-primary);
+  font-size: var(--f3);
+  text-decoration: none;
+  font-weight: bold;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 export default Home;
