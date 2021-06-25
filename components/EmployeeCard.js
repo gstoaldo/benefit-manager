@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Card from './Card';
 import LinkButton from './LinkButton';
+import { benefitTypeSymbol } from 'utils/benefit';
 
 const EmployeeCard = ({ employee, benefits, href }) => {
   return (
@@ -14,7 +15,7 @@ const EmployeeCard = ({ employee, benefits, href }) => {
         {benefits.length > 0 ? (
           benefits.map((benefit) => (
             <li key={benefit.id}>
-              <BenefitTag>{benefit.name}</BenefitTag>
+              <BenefitTag>{benefitTypeSymbol[benefit.type]}</BenefitTag>
             </li>
           ))
         ) : (
@@ -45,7 +46,6 @@ const EmployeeCPF = styled.p`
 
 const List = styled.ul`
   margin-top: 16px;
-  margin-left: -4px;
 
   & li {
     display: inline-block;
@@ -55,9 +55,7 @@ const List = styled.ul`
 `;
 
 const BenefitTag = styled.span`
-  padding: 4px 8px;
-  border: 2px solid var(--color-primary-light);
-  border-radius: 100px;
+  padding: 4px 0;
 `;
 
 export default EmployeeCard;

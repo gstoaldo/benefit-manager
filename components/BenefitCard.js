@@ -1,13 +1,19 @@
 import styled from 'styled-components';
-import { benefitTypeLabels } from 'utils/benefit';
+import { benefitTypeLabels, benefitTypeSymbol } from 'utils/benefit';
 import Card from './Card';
 
-const BenefitCard = ({ benefit }) => (
-  <Card>
-    <BenefitName>{benefit.name}</BenefitName>
-    <BenefitType>{benefitTypeLabels[benefit.type]}</BenefitType>
-  </Card>
-);
+const BenefitCard = ({ benefit }) => {
+  const { name, type } = benefit;
+  const label = benefitTypeLabels[type];
+  const symbol = benefitTypeSymbol[type];
+
+  return (
+    <Card>
+      <BenefitName>{name}</BenefitName>
+      <BenefitType>{`${label} ${symbol}`}</BenefitType>
+    </Card>
+  );
+};
 
 const BenefitName = styled.h3`
   font-weight: bold;
