@@ -47,13 +47,13 @@ const ClientPage = () => {
         title={client.name}
         link
         href="/"
-        linkTitle="Voltar para clientes"
+        linkTitle={'\u{25C2} Voltar'}
       />
       <main>
         <Layout>
           <PageSection
             title="Benefícios"
-            action={<Button disabled>Adicionar benefício</Button>}
+            action={<Button disabled>+ Benefício</Button>}
           >
             <ul>
               {benefits.map((benefit) => (
@@ -65,9 +65,7 @@ const ClientPage = () => {
           </PageSection>
           <PageSection
             title="Colaboradores"
-            action={
-              <Button onClick={addEmployee}>Adicionar colaborador</Button>
-            }
+            action={<Button onClick={addEmployee}>+ Colaborador</Button>}
           >
             {client.employees.map((employee) => (
               <EmployeeCard

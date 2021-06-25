@@ -61,7 +61,7 @@ const EmployeePage = () => {
         title={'Colaborador'}
         link
         href={`/client/${clientId}`}
-        linkTitle="Voltar para painel"
+        linkTitle={'\u{25C2} Painel'}
       />
       <main>
         <h1>{employee.name}</h1>

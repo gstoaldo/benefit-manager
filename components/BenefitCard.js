@@ -10,7 +10,7 @@ const BenefitCard = ({ benefit }) => {
   return (
     <Card>
       <BenefitName>{name}</BenefitName>
-      <BenefitType>{`${label} ${symbol}`}</BenefitType>
+      <BenefitType>{`${symbol} ${label}`}</BenefitType>
     </Card>
   );
 };
