@@ -49,8 +49,7 @@ const List = styled.ul`
 
   & li {
     display: inline-block;
-    gap: 8px;
-    margin: 0 4px;
+    margin-right: 8px;
   }
 `;
 

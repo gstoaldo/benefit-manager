@@ -15,7 +15,7 @@ export function makeServer() {
       this.passthrough('/_next/static/development/_devPagesManifest.json');
       this.passthrough('/api/partner');
       this.namespace = '/api';
-      this.timing = 2000;
+      // this.timing = 2000;
 
       this.get('/clients', (schema) => {
         return schema.db.clients;
