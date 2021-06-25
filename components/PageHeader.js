@@ -1,34 +1,22 @@
 import styled from 'styled-components';
-import Link from 'next/link';
+import LinkButton from './LinkButton';
 
 const PageHeader = ({ title, link = false, href, linkTitle }) => (
   <Header>
     <PageTitle>{title}</PageTitle>
-    {link && (
-      <Link href={href} passHref>
-        <HeaderLink>{linkTitle}</HeaderLink>
-      </Link>
-    )}
+    {link && <LinkButton href={href}>{linkTitle}</LinkButton>}
   </Header>
 );
 
 const Header = styled.header`
   padding: 32px 0;
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
 `;
 
 const PageTitle = styled.h1`
   font-weight: normal;
-`;
-
-const HeaderLink = styled.a`
-  color: var(--color-primary);
-  font-weight: bold;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 export default PageHeader;

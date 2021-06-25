@@ -15,7 +15,8 @@ const Section = styled.section`
 `;
 
 const Header = styled.header`
-  padding: 32px 0;
+  padding: 32px 16px;
+  margin-right: -16px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
