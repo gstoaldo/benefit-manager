@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 import Card from './Card';
 import LinkButton from './LinkButton';
 
 const EmployeeCard = ({ employee, benefits, href }) => {
-  console.log(`benefits`, benefits);
   return (
     <Card>
       <Header>

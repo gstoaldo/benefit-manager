@@ -12,6 +12,7 @@ const PageSection = ({ title, action, children }) => (
 
 const Section = styled.section`
   margin: 32px 0;
+  flex: 1;
 `;
 
 const Header = styled.header`

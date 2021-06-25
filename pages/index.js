@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import styled from 'styled-components';
 import useFetchHandler from 'hooks/useFetchHandler';
 import { getClients } from 'server/api';
-import styled from 'styled-components';
 import PageHeader from 'components/PageHeader';
 
 const Home = () => {
