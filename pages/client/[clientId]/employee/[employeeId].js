@@ -60,7 +60,7 @@ const EmployeePage = () => {
       <PageHeader
         title={'Colaborador'}
         link
-        href="/"
+        href={`/client/${clientId}`}
         linkTitle="Voltar para painel"
       />
       <main>

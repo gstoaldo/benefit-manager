@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { createEmployee, getBenefits, getClient } from 'server/api';
 import useFetchHandler from 'hooks/useFetchHandler';
 import PageHeader from 'components/PageHeader';
+import PageSection from 'components/PageSection';
+import Button from 'components/Button';
 
 const ClientPage = () => {
   const router = useRouter();
@@ -47,7 +49,14 @@ const ClientPage = () => {
       />
       <main>
         {benefits && (
-          <section>
+          <PageSection
+            title="Benefícios"
+            action={
+              <Button onClick={() => console.log('click')}>
+                Adicionar benefício
+              </Button>
+            }
+          >
             <h2>Benefícios</h2>
             <ul>
               {benefits.map((benefit) => (
@@ -59,7 +68,7 @@ const ClientPage = () => {
                 </li>
               ))}
             </ul>
-          </section>
+          </PageSection>
         )}
         <section>
           <h2>Funcionários</h2>

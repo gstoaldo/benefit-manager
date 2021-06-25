@@ -13,7 +13,7 @@ const PageHeader = ({ title, link = false, href, linkTitle }) => (
 );
 
 const Header = styled.header`
-  padding: 32px;
+  padding: 32px 0;
   display: flex;
   justify-content: space-between;
 `;
