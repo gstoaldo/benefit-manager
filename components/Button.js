@@ -11,11 +11,12 @@ const BaseButton = styled.button`
   border: 2px solid var(--color-primary);
   padding: 8px 16px;
   border-radius: 5px;
-  cursor: pointer;
   background: transparent;
   &:hover {
-    background: var(--color-primary-light);
+    background: ${(props) => !props.disabled && 'var(--color-primary-light)'};
   }
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+  opacity: ${(props) => props.disabled && '0.5'};
 `;
 
 export default Button;
