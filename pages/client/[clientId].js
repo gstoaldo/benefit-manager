@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { createEmployee, getBenefits, getClient } from 'server/api';
 import useFetchHandler from 'hooks/useFetchHandler';
+import PageHeader from 'components/PageHeader';
 
 const ClientPage = () => {
   const router = useRouter();
@@ -37,37 +38,43 @@ const ClientPage = () => {
   }
 
   return (
-    <main>
-      <Link href="/">Voltar para clientes</Link>
-      <h1>{client.name}</h1>
-      {benefits && (
+    <>
+      <PageHeader
+        title={client.name}
+        link
+        href="/"
+        linkTitle="Voltar para clientes"
+      />
+      <main>
+        {benefits && (
+          <section>
+            <h2>Benefícios</h2>
+            <ul>
+              {benefits.map((benefit) => (
+                <li key={benefit.id}>
+                  <article>
+                    <h1>{benefit.name}</h1>
+                    <h2>{benefit.type}</h2>
+                  </article>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
         <section>
-          <h2>Benefícios</h2>
-          <ul>
-            {benefits.map((benefit) => (
-              <li key={benefit.id}>
-                <article>
-                  <h1>{benefit.name}</h1>
-                  <h2>{benefit.type}</h2>
-                </article>
-              </li>
-            ))}
-          </ul>
+          <h2>Funcionários</h2>
+          <button onClick={addEmployee}>Adicionar colaborador</button>
+          {client.employees.map((employee) => (
+            <Link
+              key={employee.id}
+              href={`/client/${clientId}/employee/${employee.id}`}
+            >
+              <pre>{JSON.stringify(employee, '', 2)}</pre>
+            </Link>
+          ))}
         </section>
-      )}
-      <section>
-        <h2>Funcionários</h2>
-        <button onClick={addEmployee}>Adicionar colaborador</button>
-        {client.employees.map((employee) => (
-          <Link
-            key={employee.id}
-            href={`/client/${clientId}/employee/${employee.id}`}
-          >
-            <pre>{JSON.stringify(employee, '', 2)}</pre>
-          </Link>
-        ))}
-      </section>
-    </main>
+      </main>
+    </>
   );
 };
 

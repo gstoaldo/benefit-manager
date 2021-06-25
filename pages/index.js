@@ -3,6 +3,7 @@ import Link from 'next/link';
 import useFetchHandler from 'hooks/useFetchHandler';
 import { getClients } from 'server/api';
 import styled from 'styled-components';
+import PageHeader from 'components/PageHeader';
 
 const Home = () => {
   const [clients, setClients] = useState([]);
@@ -16,10 +17,8 @@ const Home = () => {
   }, [fetchHandler]);
 
   return (
-    <div>
-      <Header>
-        <h1>Clientes</h1>
-      </Header>
+    <>
+      <PageHeader title="Clientes" />
       <List>
         {clients.map((client) => (
           <Item key={client.id}>
@@ -29,13 +28,9 @@ const Home = () => {
           </Item>
         ))}
       </List>
-    </div>
+    </>
   );
 };
-
-const Header = styled.header`
-  padding: 32px;
-`;
 
 const List = styled.ul`
   padding: 32px;

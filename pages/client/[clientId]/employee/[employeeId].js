@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import useFetchHandler from 'hooks/useFetchHandler';
 import {
   getEmployee,
@@ -10,6 +9,7 @@ import {
 } from 'server/api';
 import { getUniqueRequiredFields } from 'utils/form';
 import Input from 'components/Input';
+import PageHeader from 'components/PageHeader';
 
 const EmployeePage = () => {
   const router = useRouter();
@@ -56,54 +56,61 @@ const EmployeePage = () => {
   if (employee === null) return null;
 
   return (
-    <main>
-      <Link href={`/client/${clientId}`}>Voltar para painel</Link>
-      <h1>{employee.name}</h1>
-      <h2>Dados</h2>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleUpdateEmployee();
-        }}
-      >
-        {requiredFields && (
+    <>
+      <PageHeader
+        title={'Colaborador'}
+        link
+        href="/"
+        linkTitle="Voltar para painel"
+      />
+      <main>
+        <h1>{employee.name}</h1>
+        <h2>Dados</h2>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleUpdateEmployee();
+          }}
+        >
+          {requiredFields && (
+            <ul>
+              {requiredFields.map((field) => {
+                return (
+                  <Input
+                    key={field}
+                    label={field}
+                    name={field}
+                    value={employee[field]}
+                    onChange={handleInput}
+                  />
+                );
+              })}
+            </ul>
+          )}
+
+          <button type="submit">Salvar dados</button>
+        </form>
+        {benefits && (
           <ul>
-            {requiredFields.map((field) => {
+            {benefits.map((benefit) => {
               return (
-                <Input
-                  key={field}
-                  label={field}
-                  name={field}
-                  value={employee[field]}
-                  onChange={handleInput}
-                />
+                <li key={benefit.id}>
+                  <article>
+                    <pre>{JSON.stringify(benefit, '', 2)}</pre>
+                    <button
+                      onClick={() => handleSendBenefitData(benefit.id)}
+                      disabled={employee.benefitIds.includes(benefit.id)}
+                    >
+                      Enviar
+                    </button>
+                  </article>
+                </li>
               );
             })}
           </ul>
         )}
-
-        <button type="submit">Salvar dados</button>
-      </form>
-      {benefits && (
-        <ul>
-          {benefits.map((benefit) => {
-            return (
-              <li key={benefit.id}>
-                <article>
-                  <pre>{JSON.stringify(benefit, '', 2)}</pre>
-                  <button
-                    onClick={() => handleSendBenefitData(benefit.id)}
-                    disabled={employee.benefitIds.includes(benefit.id)}
-                  >
-                    Enviar
-                  </button>
-                </article>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </main>
+      </main>
+    </>
   );
 };
 
