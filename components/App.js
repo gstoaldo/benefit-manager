@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import Loading from './Loading';
 import Error from './Error';
+import PageContainer from './PageContainer';
 
 export const FetchContext = React.createContext();
 
@@ -24,7 +25,7 @@ const App = ({ children }) => {
     <FetchContext.Provider value={{ fetchHandler }}>
       {loading && <Loading />}
       {error.error && !loading && <Error>{error.message}</Error>}
-      <div>{children}</div>
+      <PageContainer>{children}</PageContainer>
     </FetchContext.Provider>
   );
 };

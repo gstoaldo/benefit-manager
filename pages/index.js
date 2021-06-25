@@ -29,8 +29,4 @@ const Home = () => {
   );
 };
 
-// const List = styled.ul`
-//   lis
-// `
-
 export default Home;

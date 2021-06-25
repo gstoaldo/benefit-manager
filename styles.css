@@ -12,3 +12,9 @@ body {
   font-family: 'Poppins', sans-serif;
   color: var(--color-primary);
 }
+
+html,
+body,
+div#__next {
+  height: 100%;
+}
