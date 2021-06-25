@@ -22,11 +22,11 @@ const Home = () => {
       </Header>
       <List>
         {clients.map((client) => (
-          <li key={client.id}>
+          <Item key={client.id}>
             <Link href={`/client/${client.id}`} passHref>
               <ClientLink>{client.name}</ClientLink>
             </Link>
-          </li>
+          </Item>
         ))}
       </List>
     </div>
@@ -39,6 +39,10 @@ const Header = styled.header`
 
 const List = styled.ul`
   padding: 32px;
+`;
+
+const Item = styled.li`
+  margin: 16px 0;
 `;
 
 const ClientLink = styled.a`
