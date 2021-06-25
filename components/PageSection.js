@@ -23,7 +23,6 @@ const Header = styled.header`
 
 const SectionTitle = styled.h2`
   font-weight: bold;
-  color: var(--color-primary);
 `;
 
 export default PageSection;

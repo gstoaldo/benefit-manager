@@ -51,13 +51,8 @@ const ClientPage = () => {
         {benefits && (
           <PageSection
             title="Benefícios"
-            action={
-              <Button onClick={() => console.log('click')}>
-                Adicionar benefício
-              </Button>
-            }
+            action={<Button disabled>Adicionar benefício</Button>}
           >
-            <h2>Benefícios</h2>
             <ul>
               {benefits.map((benefit) => (
                 <li key={benefit.id}>
@@ -70,9 +65,10 @@ const ClientPage = () => {
             </ul>
           </PageSection>
         )}
-        <section>
-          <h2>Funcionários</h2>
-          <button onClick={addEmployee}>Adicionar colaborador</button>
+        <PageSection
+          title="Colaboradores"
+          action={<Button onClick={addEmployee}>Adicionar colaborador</Button>}
+        >
           {client.employees.map((employee) => (
             <Link
               key={employee.id}
@@ -81,7 +77,7 @@ const ClientPage = () => {
               <pre>{JSON.stringify(employee, '', 2)}</pre>
             </Link>
           ))}
-        </section>
+        </PageSection>
       </main>
     </>
   );
