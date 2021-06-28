@@ -24,6 +24,7 @@ const Label = styled.label`
 `;
 
 const StyledInput = styled.input`
+  width: 100%;
   border: 2px solid var(--color-primary-light);
   border-radius: var(--border-radius);
   padding: 8px 16px;

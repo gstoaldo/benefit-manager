@@ -12,6 +12,7 @@ import { getUniqueRequiredFields } from 'utils/form';
 import Input from 'components/Input';
 import PageHeader from 'components/PageHeader';
 import PageSection from 'components/PageSection';
+import Layout from 'components/Layout';
 import Button from 'components/Button';
 
 const EmployeePage = () => {
@@ -67,54 +68,58 @@ const EmployeePage = () => {
         linkTitle={'\u{25C2} Painel'}
       />
       <main>
-        <PageSection
-          title={'Dados'}
-          action={<Button onClick={handleUpdateEmployee}>Salvar</Button>}
-        >
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleUpdateEmployee();
-            }}
+        <Layout>
+          <PageSection
+            title={'Dados'}
+            action={<Button onClick={handleUpdateEmployee}>Salvar</Button>}
           >
-            {requiredFields && (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleUpdateEmployee();
+              }}
+            >
+              {requiredFields && (
+                <ul>
+                  {requiredFields.map((field) => {
+                    return (
+                      <Input
+                        key={field}
+                        label={inputLabels[field]}
+                        name={field}
+                        value={employee[field]}
+                        onChange={handleInput}
+                      />
+                    );
+                  })}
+                </ul>
+              )}
+
+              <input style={{ display: 'none' }} type="submit" />
+            </form>
+          </PageSection>
+          <PageSection title={'Benefícios disponíveis'}>
+            {benefits && (
               <ul>
-                {requiredFields.map((field) => {
+                {benefits.map((benefit) => {
                   return (
-                    <Input
-                      key={field}
-                      label={inputLabels[field]}
-                      name={field}
-                      value={employee[field]}
-                      onChange={handleInput}
-                    />
+                    <li key={benefit.id}>
+                      <article>
+                        <pre>{JSON.stringify(benefit, '', 2)}</pre>
+                        <button
+                          onClick={() => handleSendBenefitData(benefit.id)}
+                          disabled={employee.benefitIds.includes(benefit.id)}
+                        >
+                          Enviar
+                        </button>
+                      </article>
+                    </li>
                   );
                 })}
               </ul>
             )}
-
-            <input style={{ display: 'none' }} type="submit" />
-          </form>
-        </PageSection>
-        {benefits && (
-          <ul>
-            {benefits.map((benefit) => {
-              return (
-                <li key={benefit.id}>
-                  <article>
-                    <pre>{JSON.stringify(benefit, '', 2)}</pre>
-                    <button
-                      onClick={() => handleSendBenefitData(benefit.id)}
-                      disabled={employee.benefitIds.includes(benefit.id)}
-                    >
-                      Enviar
-                    </button>
-                  </article>
-                </li>
-              );
-            })}
-          </ul>
-        )}
+          </PageSection>
+        </Layout>
       </main>
     </>
   );

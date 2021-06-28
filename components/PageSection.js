@@ -16,10 +16,11 @@ const Section = styled.section`
 `;
 
 const Header = styled.header`
-  padding: 32px 16px;
-  margin-right: -16px;
+  height: 40px;
+  margin-bottom: 32px;
+  margin-left: 16px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
 `;
