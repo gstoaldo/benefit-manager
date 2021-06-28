@@ -14,6 +14,7 @@ import PageHeader from 'components/PageHeader';
 import PageSection from 'components/PageSection';
 import Layout from 'components/Layout';
 import Button from 'components/Button';
+import BenefitApplicationCard from 'components/BenefitApplicationCard';
 
 const EmployeePage = () => {
   const router = useRouter();
@@ -104,15 +105,11 @@ const EmployeePage = () => {
                 {benefits.map((benefit) => {
                   return (
                     <li key={benefit.id}>
-                      <article>
-                        <pre>{JSON.stringify(benefit, '', 2)}</pre>
-                        <button
-                          onClick={() => handleSendBenefitData(benefit.id)}
-                          disabled={employee.benefitIds.includes(benefit.id)}
-                        >
-                          Enviar
-                        </button>
-                      </article>
+                      <BenefitApplicationCard
+                        benefit={benefit}
+                        active={employee.benefitIds.includes(benefit.id)}
+                        onClick={() => handleSendBenefitData(benefit.id)}
+                      />
                     </li>
                   );
                 })}
