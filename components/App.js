@@ -25,7 +25,7 @@ const App = ({ children }) => {
     <FetchContext.Provider value={{ fetchHandler }}>
       <PageContainer>{children}</PageContainer>
       {loading && <Loading />}
-      {error.error && !loading && <Error>{error.message}</Error>}
+      <Error open={error.error && !loading}>{error.message}</Error>
     </FetchContext.Provider>
   );
 };

@@ -6,6 +6,7 @@ html {
   --color-secondary: hsl(335deg 100% 93%);
   --color-black: hsl(0deg 0% 20%);
   --color-white: hsl(0deg 0% 100%);
+  --color-error: hsl(0deg 90% 60%);
 
   /* font sizes */
   --f1: 1rem;
