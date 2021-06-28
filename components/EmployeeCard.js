@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Card from './Card';
 import LinkButton from './LinkButton';
-import { benefitTypeSymbol } from 'utils/benefit';
+import { benefitTypeSymbols } from 'utils/labels';
 
 const EmployeeCard = ({ employee, benefits, href }) => {
   return (
@@ -15,7 +15,7 @@ const EmployeeCard = ({ employee, benefits, href }) => {
         {benefits.length > 0 ? (
           benefits.map((benefit) => (
             <li key={benefit.id}>
-              <BenefitTag>{benefitTypeSymbol[benefit.type]}</BenefitTag>
+              <BenefitTag>{benefitTypeSymbols[benefit.type]}</BenefitTag>
             </li>
           ))
         ) : (

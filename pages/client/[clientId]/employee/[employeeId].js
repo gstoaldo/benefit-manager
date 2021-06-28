@@ -7,9 +7,12 @@ import {
   updateEmployee,
   sendBenefitData,
 } from 'server/api';
+import { inputLabels } from 'utils/labels';
 import { getUniqueRequiredFields } from 'utils/form';
 import Input from 'components/Input';
 import PageHeader from 'components/PageHeader';
+import PageSection from 'components/PageSection';
+import Button from 'components/Button';
 
 const EmployeePage = () => {
   const router = useRouter();
@@ -64,32 +67,35 @@ const EmployeePage = () => {
         linkTitle={'\u{25C2} Painel'}
       />
       <main>
-        <h1>{employee.name}</h1>
-        <h2>Dados</h2>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleUpdateEmployee();
-          }}
+        <PageSection
+          title={'Dados'}
+          action={<Button onClick={handleUpdateEmployee}>Salvar</Button>}
         >
-          {requiredFields && (
-            <ul>
-              {requiredFields.map((field) => {
-                return (
-                  <Input
-                    key={field}
-                    label={field}
-                    name={field}
-                    value={employee[field]}
-                    onChange={handleInput}
-                  />
-                );
-              })}
-            </ul>
-          )}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleUpdateEmployee();
+            }}
+          >
+            {requiredFields && (
+              <ul>
+                {requiredFields.map((field) => {
+                  return (
+                    <Input
+                      key={field}
+                      label={inputLabels[field]}
+                      name={field}
+                      value={employee[field]}
+                      onChange={handleInput}
+                    />
+                  );
+                })}
+              </ul>
+            )}
 
-          <button type="submit">Salvar dados</button>
-        </form>
+            <input style={{ display: 'none' }} type="submit" />
+          </form>
+        </PageSection>
         {benefits && (
           <ul>
             {benefits.map((benefit) => {

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { benefitTypeLabels, benefitTypeSymbol } from 'utils/benefit';
+import { benefitTypeLabels, benefitTypeSymbols } from 'utils/labels';
 import Card from './Card';
 
 const BenefitCard = ({ benefit }) => {
   const { name, type } = benefit;
   const label = benefitTypeLabels[type];
-  const symbol = benefitTypeSymbol[type];
+  const symbol = benefitTypeSymbols[type];
 
   return (
     <Card>
