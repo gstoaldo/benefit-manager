@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { createEmployee, getBenefits, getClient } from 'server/api';
 import useFetchHandler from 'hooks/useFetchHandler';
-import PageHeader from 'components/PageHeader';
 import PageSection from 'components/PageSection';
 import Button from 'components/Button';
 import BenefitCard from 'components/BenefitCard';
@@ -42,45 +41,35 @@ const ClientPage = () => {
   }
 
   return (
-    <>
-      <PageHeader
-        title={client.name}
-        link
-        href="/"
-        linkTitle={'\u{25C2} Voltar'}
-      />
-      <main>
-        <Layout>
-          <PageSection
-            title="Benefícios"
-            action={<Button disabled>+ Benefício</Button>}
-          >
-            <ul>
-              {benefits.map((benefit) => (
-                <li key={benefit.id}>
-                  <BenefitCard benefit={benefit}></BenefitCard>
-                </li>
-              ))}
-            </ul>
-          </PageSection>
-          <PageSection
-            title="Colaboradores"
-            action={<Button onClick={addEmployee}>+ Colaborador</Button>}
-          >
-            {client.employees.map((employee) => (
-              <EmployeeCard
-                key={employee.id}
-                employee={employee}
-                benefits={benefits.filter((benefit) =>
-                  employee.benefitIds.includes(benefit.id)
-                )}
-                href={`/client/${clientId}/employee/${employee.id}`}
-              ></EmployeeCard>
-            ))}
-          </PageSection>
-        </Layout>
-      </main>
-    </>
+    <Layout title={client.name} link href="/" linkText={'\u{25C2} Voltar'}>
+      <PageSection
+        title="Benefícios"
+        action={<Button disabled>+ Benefício</Button>}
+      >
+        <ul>
+          {benefits.map((benefit) => (
+            <li key={benefit.id}>
+              <BenefitCard benefit={benefit}></BenefitCard>
+            </li>
+          ))}
+        </ul>
+      </PageSection>
+      <PageSection
+        title="Colaboradores"
+        action={<Button onClick={addEmployee}>+ Colaborador</Button>}
+      >
+        {client.employees.map((employee) => (
+          <EmployeeCard
+            key={employee.id}
+            employee={employee}
+            benefits={benefits.filter((benefit) =>
+              employee.benefitIds.includes(benefit.id)
+            )}
+            href={`/client/${clientId}/employee/${employee.id}`}
+          ></EmployeeCard>
+        ))}
+      </PageSection>
+    </Layout>
   );
 };
 

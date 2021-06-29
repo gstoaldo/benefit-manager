@@ -13,7 +13,6 @@ import {
   getUniqueRequiredFields,
 } from 'utils/inputValidation';
 import Input from 'components/Input';
-import PageHeader from 'components/PageHeader';
 import PageSection from 'components/PageSection';
 import Layout from 'components/Layout';
 import Button from 'components/Button';
@@ -67,67 +66,62 @@ const EmployeePage = () => {
   if (employee === null) return null;
 
   return (
-    <>
-      <PageHeader
-        title={'Colaborador'}
-        link
-        href={`/client/${clientId}`}
-        linkTitle={'\u{25C2} Painel'}
-      />
-      <main>
-        <Layout>
-          <PageSection
-            title={'Dados'}
-            action={<Button onClick={handleUpdateEmployee}>Salvar</Button>}
-          >
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleUpdateEmployee();
-              }}
-            >
-              {requiredFields && (
-                <ul>
-                  {requiredFields.map((field) => {
-                    return (
-                      <Input
-                        key={field}
-                        label={inputLabels[field]}
-                        name={field}
-                        value={employee[field]}
-                        placeholder={inputPlaceholders[field]}
-                        type={inputTypes[field]}
-                        onChange={handleInput}
-                      />
-                    );
-                  })}
-                </ul>
-              )}
+    <Layout
+      title={'Colaborador'}
+      link
+      href={`/client/${clientId}`}
+      linkText={'\u{25C2} Painel'}
+    >
+      <PageSection
+        title={'Dados'}
+        action={<Button onClick={handleUpdateEmployee}>Salvar</Button>}
+      >
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleUpdateEmployee();
+          }}
+        >
+          {requiredFields && (
+            <ul>
+              {requiredFields.map((field) => {
+                return (
+                  <Input
+                    key={field}
+                    label={inputLabels[field]}
+                    name={field}
+                    value={employee[field]}
+                    placeholder={inputPlaceholders[field]}
+                    type={inputTypes[field]}
+                    onChange={handleInput}
+                  />
+                );
+              })}
+            </ul>
+          )}
 
-              <input style={{ display: 'none' }} type="submit" />
-            </form>
-          </PageSection>
-          <PageSection title={'Benefícios disponíveis'}>
-            {benefits && (
-              <ul>
-                {benefits.map((benefit) => {
-                  return (
-                    <li key={benefit.id}>
-                      <BenefitApplicationCard
-                        fieldsValidation={fieldsValidation.current}
-                        benefit={benefit}
-                        active={employee.benefitIds.includes(benefit.id)}
-                        onClick={() => handleSendBenefitData(benefit.id)}
-                      />
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </PageSection>
-        </Layout>
-      </main>
-    </>
+          <input style={{ display: 'none' }} type="submit" />
+        </form>
+      </PageSection>
+      <PageSection title={'Benefícios disponíveis'}>
+        {benefits && (
+          <ul>
+            {benefits.map((benefit) => {
+              return (
+                <li key={benefit.id}>
+                  <BenefitApplicationCard
+                    fieldsValidation={fieldsValidation.current}
+                    benefit={benefit}
+                    active={employee.benefitIds.includes(benefit.id)}
+                    onClick={() => handleSendBenefitData(benefit.id)}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </PageSection>
+    </Layout>
   );
 };
 

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import useFetchHandler from 'hooks/useFetchHandler';
 import { getClients } from 'server/api';
-import PageHeader from 'components/PageHeader';
+import Layout from 'components/Layout';
 
 const Home = () => {
   const [clients, setClients] = useState([]);
@@ -17,8 +17,7 @@ const Home = () => {
   }, [fetchHandler]);
 
   return (
-    <>
-      <PageHeader title="Clientes" />
+    <Layout title="Clientes">
       <List>
         {clients.map((client) => (
           <Item key={client.id}>
@@ -28,7 +27,7 @@ const Home = () => {
           </Item>
         ))}
       </List>
-    </>
+    </Layout>
   );
 };
 
