@@ -7,7 +7,7 @@ import Button from 'components/Button';
 import BenefitCard from 'components/BenefitCard';
 import EmployeeCard from 'components/EmployeeCard';
 import Layout from 'components/Layout';
-import styled from 'styled-components';
+import { NoEmployeeMessage } from 'components/Messages';
 
 const ClientPage = () => {
   const router = useRouter();
@@ -74,21 +74,11 @@ const ClientPage = () => {
             ))}
           </ul>
         ) : (
-          <NoEmployee />
+          <NoEmployeeMessage />
         )}
       </PageSection>
     </Layout>
   );
 };
-
-const NoEmployee = () => (
-  <NoEmployeeContainer>
-    A lista de colaboradores está vazia.
-  </NoEmployeeContainer>
-);
-
-const NoEmployeeContainer = styled.p`
-  padding-left: 16px;
-`;
 
 export default ClientPage;

@@ -8,9 +8,10 @@ const BenefitApplicationCard = ({
   fieldsValidation,
   benefit,
   active,
+  disabled,
   onClick,
 }) => {
-  const disabled = !benefit.requiredFields.every(
+  const allFieldsAreValid = benefit.requiredFields.every(
     (field) => fieldsValidation[field]
   );
 
@@ -21,7 +22,11 @@ const BenefitApplicationCard = ({
         {active ? (
           <ActiveTag>Ativo</ActiveTag>
         ) : (
-          <Button variant="text" disabled={disabled} onClick={onClick}>
+          <Button
+            variant="text"
+            disabled={disabled || !allFieldsAreValid}
+            onClick={onClick}
+          >
             Enviar
           </Button>
         )}

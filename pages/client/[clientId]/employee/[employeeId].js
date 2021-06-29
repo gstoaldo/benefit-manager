@@ -17,6 +17,7 @@ import PageSection from 'components/PageSection';
 import Layout from 'components/Layout';
 import Button from 'components/Button';
 import BenefitApplicationCard from 'components/BenefitApplicationCard';
+import { ShouldSaveMessage } from 'components/Messages';
 
 const EmployeePage = () => {
   const router = useRouter();
@@ -26,6 +27,7 @@ const EmployeePage = () => {
   const [requiredFields, setRequiredFields] = useState(null);
   const fetchHandler = useFetchHandler();
   const fieldsValidation = useRef(getFieldsValidation(employee));
+  const [shouldSave, setShouldSave] = useState(false);
 
   useEffect(() => {
     if (clientId !== undefined && employeeId !== undefined) {
@@ -48,6 +50,7 @@ const EmployeePage = () => {
       const data = await updateEmployee(clientId, employeeId, employee);
       setEmployee(data);
       fieldsValidation.current = getFieldsValidation(data);
+      setShouldSave(false);
     }, 'Erro ao salvar dados do colaborador.');
   };
 
@@ -61,6 +64,7 @@ const EmployeePage = () => {
   const handleInput = (event) => {
     const { name, value } = event.target;
     setEmployee({ ...employee, [name]: value });
+    setShouldSave(true);
   };
 
   if (employee === null) return null;
@@ -74,7 +78,11 @@ const EmployeePage = () => {
     >
       <PageSection
         title={'Dados'}
-        action={<Button onClick={handleUpdateEmployee}>Salvar</Button>}
+        action={
+          <Button onClick={handleUpdateEmployee} disabled={!shouldSave}>
+            Salvar
+          </Button>
+        }
       >
         <form
           onSubmit={(e) => {
@@ -113,6 +121,7 @@ const EmployeePage = () => {
                     fieldsValidation={fieldsValidation.current}
                     benefit={benefit}
                     active={employee.benefitIds.includes(benefit.id)}
+                    disabled={shouldSave}
                     onClick={() => handleSendBenefitData(benefit.id)}
                   />
                 </li>
@@ -120,6 +129,7 @@ const EmployeePage = () => {
             })}
           </ul>
         )}
+        {shouldSave && <ShouldSaveMessage />}
       </PageSection>
     </Layout>
   );
