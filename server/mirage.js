@@ -1,4 +1,4 @@
-import { createServer } from 'miragejs';
+import { createServer, Response } from 'miragejs';
 import { BENEFITS, EMPLOYEES, CLIENTS } from '../data';
 
 export function makeServer() {
@@ -15,7 +15,7 @@ export function makeServer() {
       this.passthrough('/_next/static/development/_devPagesManifest.json');
       this.passthrough('/api/partner');
       this.namespace = '/api';
-      // this.timing = 2000;
+      this.timing = 1000;
 
       this.get('/clients', (schema) => {
         return schema.db.clients;
@@ -87,6 +87,8 @@ export function makeServer() {
           return new Response(404);
         }
       );
+
+      this.passthrough();
     },
   });
 
