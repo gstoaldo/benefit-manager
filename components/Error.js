@@ -13,7 +13,7 @@ const Error = ({ open, children }) => {
     return (
       <ErrorMessage>
         <Message>{children}</Message>
-        <Button onClick={() => setShow(false)}>OK</Button>
+        <CloseButton onClick={() => setShow(false)}>OK</CloseButton>
       </ErrorMessage>
     );
   }
@@ -35,12 +35,18 @@ const ErrorMessage = styled.div`
   max-width: 300px;
   margin: auto;
   padding: 16px;
-  background-color: var(--color-primary-light);
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  background-color: var(--color-error);
+  color: var(--color-white);
   border-top: 0;
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   text-align: end;
+`;
+
+const CloseButton = styled(Button)`
+  color: var(--color-white);
+  &:hover {
+    background-color: transparent;
+  }
 `;
 
 export default Error;
