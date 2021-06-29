@@ -7,6 +7,7 @@ import Button from 'components/Button';
 import BenefitCard from 'components/BenefitCard';
 import EmployeeCard from 'components/EmployeeCard';
 import Layout from 'components/Layout';
+import styled from 'styled-components';
 
 const ClientPage = () => {
   const router = useRouter();
@@ -58,19 +59,36 @@ const ClientPage = () => {
         title="Colaboradores"
         action={<Button onClick={addEmployee}>+ Colaborador</Button>}
       >
-        {client.employees.map((employee) => (
-          <EmployeeCard
-            key={employee.id}
-            employee={employee}
-            benefits={benefits.filter((benefit) =>
-              employee.benefitIds.includes(benefit.id)
-            )}
-            href={`/client/${clientId}/employee/${employee.id}`}
-          ></EmployeeCard>
-        ))}
+        {client.employees.length > 0 ? (
+          <ul>
+            {client.employees.map((employee) => (
+              <li key={employee.id}>
+                <EmployeeCard
+                  employee={employee}
+                  benefits={benefits.filter((benefit) =>
+                    employee.benefitIds.includes(benefit.id)
+                  )}
+                  href={`/client/${clientId}/employee/${employee.id}`}
+                />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <NoEmployee />
+        )}
       </PageSection>
     </Layout>
   );
 };
+
+const NoEmployee = () => (
+  <NoEmployeeContainer>
+    A lista de colaboradores está vazia.
+  </NoEmployeeContainer>
+);
+
+const NoEmployeeContainer = styled.p`
+  padding-left: 16px;
+`;
 
 export default ClientPage;

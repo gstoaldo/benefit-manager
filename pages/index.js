@@ -37,7 +37,11 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  margin: 16px 0;
+  margin: 64px 0;
+
+  @media ${QUERIES.tabletAndDown} {
+    margin: 16px 0;
+  }
 `;
 
 const ClientLink = styled.a`
