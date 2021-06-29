@@ -3,7 +3,16 @@ import Card from './Card';
 import Button from 'components/Button';
 import { inputLabels, benefitTypeLabels } from 'utils/labels';
 
-const BenefitApplicationCard = ({ benefit, active, onClick }) => {
+const BenefitApplicationCard = ({
+  fieldsValidation,
+  benefit,
+  active,
+  onClick,
+}) => {
+  const disabled = !benefit.requiredFields.every(
+    (field) => fieldsValidation[field]
+  );
+
   return (
     <Card>
       <Header>
@@ -11,7 +20,7 @@ const BenefitApplicationCard = ({ benefit, active, onClick }) => {
         {active ? (
           <ActiveTag>Ativo</ActiveTag>
         ) : (
-          <Button variant="text" onClick={onClick}>
+          <Button variant="text" disabled={disabled} onClick={onClick}>
             Enviar
           </Button>
         )}
@@ -20,7 +29,9 @@ const BenefitApplicationCard = ({ benefit, active, onClick }) => {
       <List>
         {benefit.requiredFields.map((field) => (
           <li key={field}>
-            <Tag>{inputLabels[field]}</Tag>
+            <FieldTag isValid={fieldsValidation[field]}>
+              {inputLabels[field]}
+            </FieldTag>
           </li>
         ))}
       </List>
@@ -46,19 +57,23 @@ const BenefitType = styled.p`
 `;
 
 const List = styled.ul`
-  margin-top: 16px;
+  margin-top: 8px;
 
   & li {
     display: inline-block;
     margin-right: 8px;
+    margin-top: 8px;
   }
 `;
 
-const Tag = styled.span`
+const FieldTag = styled.span`
   display: inline-block;
   padding: 4px 8px;
-  border: 2px solid var(--color-primary-light);
   border-radius: 100px;
+  border: 2px solid;
+  color: ${(props) => !props.isValid && 'var(--color-error)'};
+  border-color: ${(props) =>
+    props.isValid ? 'var(--color-primary-light)' : 'var(--color-error)'};
 `;
 
 const ActiveTag = styled.div`

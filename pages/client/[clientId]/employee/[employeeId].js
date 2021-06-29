@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import useFetchHandler from 'hooks/useFetchHandler';
 import {
@@ -8,7 +8,7 @@ import {
   sendBenefitData,
 } from 'server/api';
 import { inputLabels } from 'utils/labels';
-import { getUniqueRequiredFields } from 'utils/form';
+import { getFieldsValidation, getUniqueRequiredFields } from 'utils/form';
 import Input from 'components/Input';
 import PageHeader from 'components/PageHeader';
 import PageSection from 'components/PageSection';
@@ -23,12 +23,14 @@ const EmployeePage = () => {
   const [benefits, setBenefits] = useState(null);
   const [requiredFields, setRequiredFields] = useState(null);
   const fetchHandler = useFetchHandler();
+  const fieldsValidation = useRef(getFieldsValidation(employee));
 
   useEffect(() => {
     if (clientId !== undefined && employeeId !== undefined) {
       fetchHandler(async () => {
         const data = await getEmployee(clientId, employeeId);
         setEmployee(data);
+        fieldsValidation.current = getFieldsValidation(data);
       }, 'Erro ao carregar dados do colaborador');
 
       fetchHandler(async () => {
@@ -43,6 +45,7 @@ const EmployeePage = () => {
     fetchHandler(async () => {
       const data = await updateEmployee(clientId, employeeId, employee);
       setEmployee(data);
+      fieldsValidation.current = getFieldsValidation(data);
     }, 'Erro ao salvar dados do colaborador.');
   };
 
@@ -106,6 +109,7 @@ const EmployeePage = () => {
                   return (
                     <li key={benefit.id}>
                       <BenefitApplicationCard
+                        fieldsValidation={fieldsValidation.current}
                         benefit={benefit}
                         active={employee.benefitIds.includes(benefit.id)}
                         onClick={() => handleSendBenefitData(benefit.id)}

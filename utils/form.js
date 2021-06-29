@@ -16,5 +16,34 @@ export function filterEmployeeData(employeeData, requiredFields) {
 }
 
 export function validateEmployeeData(employeeData, requiredFields) {
-  return requiredFields.every((field) => employeeData[field] !== undefined);
+  return requiredFields.every((field) =>
+    fieldIsValid(field, employeeData[field])
+  );
+}
+
+export function getFieldsValidation(employee) {
+  const validation = {};
+
+  for (let field in employee) {
+    validation[field] = fieldIsValid(field, employee[field]);
+  }
+
+  return validation;
+}
+
+export function fieldIsValid(field, value) {
+  const validationFunction =
+    {
+      height: heightIsValid,
+    }[field] || defaultValidationFunction;
+
+  return validationFunction(value);
+}
+
+function defaultValidationFunction(value) {
+  return value !== undefined && value !== '';
+}
+
+function heightIsValid(value) {
+  return value > 30;
 }
