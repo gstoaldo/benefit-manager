@@ -2,35 +2,25 @@
   {
     "id": "1",
     "name": "Maria Silva",
-    "cpf": "09222123567",
+    "cpf": "123.456.789-10",
     "email": "mariasilva@empr.br",
-    "address": {
-      "cep": "01310400",
-      "street": "Av Paulista",
-      "city": "São Paulo",
-      "district": "São Paulo",
-      "complement": "apto 88"
-    },
+    "admissionDate": "2021-06-21",
+    "address": "Av Paulista, 1000 - SP",
     "weight": 62,
-    "height": 1.6,
+    "height": 160,
     "meditationHoursInWeek": 5.3,
     "benefitIds": []
   },
   {
     "id": "2",
-    "name": "Tim Maia ",
-    "cpf": "09222123567",
+    "name": "Tim Maia",
+    "cpf": "123.456.789-20",
     "email": "tim@maia.br",
-    "address": {
-      "cep": "01310400",
-      "street": "Av Paulista",
-      "city": "São Paulo",
-      "district": "São Paulo",
-      "complement": "apto 88"
-    },
-    "weight": 62,
-    "height": 1.6,
-    "meditationHoursInWeek": 5.3,
+    "admissionDate": "2000-06-21",
+    "address": "No caminho do bem",
+    "weight": 130,
+    "height": 180,
+    "meditationHoursInWeek": 15,
     "benefitIds": ["1", "3"]
   }
 ]

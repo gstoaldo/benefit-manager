@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Input = ({ name, label, value, onChange }) => {
+const Input = ({ name, label, value, ...rest }) => {
   return (
     <Container>
       <Label htmlFor={name}>{label}</Label>
@@ -8,7 +8,8 @@ const Input = ({ name, label, value, onChange }) => {
         id={name}
         name={name}
         value={value || ''}
-        onChange={onChange}
+        autoComplete="off"
+        {...rest}
       />
     </Container>
   );

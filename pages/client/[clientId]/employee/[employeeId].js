@@ -7,8 +7,11 @@ import {
   updateEmployee,
   sendBenefitData,
 } from 'server/api';
-import { inputLabels } from 'utils/labels';
-import { getFieldsValidation, getUniqueRequiredFields } from 'utils/form';
+import { inputLabels, inputPlaceholders, inputTypes } from 'utils/inputs';
+import {
+  getFieldsValidation,
+  getUniqueRequiredFields,
+} from 'utils/inputValidation';
 import Input from 'components/Input';
 import PageHeader from 'components/PageHeader';
 import PageSection from 'components/PageSection';
@@ -92,6 +95,8 @@ const EmployeePage = () => {
                         label={inputLabels[field]}
                         name={field}
                         value={employee[field]}
+                        placeholder={inputPlaceholders[field]}
+                        type={inputTypes[field]}
                         onChange={handleInput}
                       />
                     );

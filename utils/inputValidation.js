@@ -45,5 +45,6 @@ function defaultValidationFunction(value) {
 }
 
 function heightIsValid(value) {
+  // height must be in cm. This is just a very simple validation example.
   return value > 30;
 }
