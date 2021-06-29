@@ -18,15 +18,16 @@ const ClientPage = () => {
 
   useEffect(() => {
     if (clientId !== undefined) {
-      fetchHandler(async () => {
-        const data = await getClient(clientId);
-        setClient(data);
-      }, 'Erro ao carregar dados do cliente.');
-
-      fetchHandler(async () => {
-        const data = await getBenefits(clientId);
-        setBenefits(data);
-      }, 'Erro ao carregar benefícios.');
+      fetchHandler(
+        async () => {
+          const clientData = await getClient(clientId);
+          const benefitData = await getBenefits(clientId);
+          setClient(clientData);
+          setBenefits(benefitData);
+        },
+        'Erro ao carregar dados.',
+        '/'
+      );
     }
   }, [fetchHandler, clientId]);
 

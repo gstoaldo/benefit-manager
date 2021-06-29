@@ -31,14 +31,18 @@ const EmployeePage = () => {
 
   useEffect(() => {
     if (clientId !== undefined && employeeId !== undefined) {
-      fetchHandler(async () => {
-        const employeeData = await getEmployee(clientId, employeeId);
-        const benefitsData = await getBenefits(clientId);
-        setEmployee(employeeData);
-        setBenefits(benefitsData);
-        setRequiredFields(getUniqueRequiredFields(benefitsData));
-        fieldsValidation.current = getFieldsValidation(employeeData);
-      }, 'Erro ao carregar dados do colaborador.');
+      fetchHandler(
+        async () => {
+          const employeeData = await getEmployee(clientId, employeeId);
+          const benefitsData = await getBenefits(clientId);
+          setEmployee(employeeData);
+          setBenefits(benefitsData);
+          setRequiredFields(getUniqueRequiredFields(benefitsData));
+          fieldsValidation.current = getFieldsValidation(employeeData);
+        },
+        'Erro ao carregar dados do colaborador.',
+        `/client/${clientId}`
+      );
     }
   }, [clientId, employeeId, fetchHandler]);
 

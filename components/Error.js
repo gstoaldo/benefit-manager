@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from 'components/Button';
 
-const Error = ({ open, children }) => {
+const Error = ({ open, onClose = () => {}, children }) => {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
@@ -13,7 +13,14 @@ const Error = ({ open, children }) => {
     return (
       <ErrorMessage>
         <Message>{children}</Message>
-        <CloseButton onClick={() => setShow(false)}>OK</CloseButton>
+        <CloseButton
+          onClick={() => {
+            setShow(false);
+            onClose();
+          }}
+        >
+          OK
+        </CloseButton>
       </ErrorMessage>
     );
   }
