@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import useFetchHandler from 'hooks/useFetchHandler';
 import { getClients } from 'server/api';
 import Layout from 'components/Layout';
+import { QUERIES } from 'styles/constants';
 
 const Home = () => {
   const [clients, setClients] = useState([]);
@@ -41,11 +42,14 @@ const Item = styled.li`
 
 const ClientLink = styled.a`
   color: var(--color-primary);
-  font-size: var(--f3);
+  font-size: var(--f2);
   text-decoration: none;
   font-weight: bold;
   &:hover {
     text-decoration: underline;
+  }
+  @media ${QUERIES.tabletAndDown} {
+    font-size: var(--f1);
   }
 `;
 
