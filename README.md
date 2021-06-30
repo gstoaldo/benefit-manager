@@ -33,7 +33,7 @@ Assumi que o _parceiro_ possui uma API para incluir novos colaboradores no benef
 
 ## Páginas
 
-O app está dividido em 3 páginas. Na aplicação real, eu imagino uma página de login e rotas liberadas apenas para usuários autenticados. Eu optei por simplificar o problema e colocar um `clientId` nas rotas que seriam bloqueadas.
+O app está dividido em 3 páginas. Na aplicação real, eu imagino uma página de login e rotas liberadas apenas para usuários autenticados. Eu optei por simplificar o problema e colocar um `clientId` na url das rotas que seriam bloqueadas.
 
 ### Home (/)
 
