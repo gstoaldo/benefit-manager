@@ -13,15 +13,23 @@ https://benefit-manager.vercel.app/
 
 ## O projeto
 
-Bla bla
+A ideia foi desenvolver uma solução com foco no **frontend** que permite as seguintes funções básicas:
 
-## A Stack
+1. Adicionar novos colaboradores;
+2. Preencher dados do colaborador;
+3. Incluir colaborador no benefício desejado.
 
-O projeto foi desenvolvido em [React](https://reactjs.org/) com foco no **frontend**. Escolhi o framework [Next.js](https://nextjs.org/) pela sua facilidade de configuração e deploy na plataforma da Vercel.
+## A stack
+
+O projeto foi desenvolvido em [React](https://reactjs.org/). Escolhi o framework [Next.js](https://nextjs.org/) pela sua facilidade de configuração e deploy na plataforma da Vercel.
 
 Utilizei a lib [mirage js](https://miragejs.com/) para simular a API que acessa o banco de dados sem ter um backend.
 
 Para os estilos, optei por utilizar a [styled-components](https://styled-components.com/). Eu tive um primeiro contato com essa lib em um curso e resolvi colocar em prática nesse projeto. Gosto de como ela permite separar bem a estrutura do componente do estilo. Criei um css apenas para definir cores e fontes.
+
+## Hipóteses
+
+Assumi que o _parceiro_ possui uma API para incluir novos colaboradores no benefício. Essa API foi simulada de maneira simplificada em `/pages/api/partner.js`. Na aplicação real, esta API seria externa e específica para cada parceiro.
 
 ## Páginas
 
@@ -50,3 +58,7 @@ Pensando na experiência do usuário, os campos que apresentam problema são ind
 Eu simplifiquei bastante a validação dos dados, basta que eles estejam preenchidos para serem válidos. No campo _altura_ eu fiz uma função de validação extremamente simples só para ilustrar o conceito e como poderia ser generalizado para os outros campos.
 
 Outra melhoria a ser feita é utilizar uma máscara para formatar os dados (por exemplo, formatar o número de CPF com a separação por pontos).
+
+## Arquitetura
+
+A fim de gerenciar os estados de _loading_ e _error_ ao fazer uma chamada, eu criei um componente `<App />` que envolve toda a aplicação. Ele é responsável por renderizar os componentes que indicam as mensagens de _loading_ ou _error_. Além disso, eu usei o `Context` do React para expor a função `fetchHandler` que pode ser usada para mudar o estado da aplicação ao fazer uma chamada.
