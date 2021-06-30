@@ -29,7 +29,7 @@ Para os estilos, optei por utilizar a [styled-components](https://styled-compone
 
 ## Hipóteses
 
-Assumi que o _parceiro_ possui uma API para incluir novos colaboradores no benefício. Essa API foi simulada de maneira simplificada em `/pages/api/partner.js`. Na aplicação real, esta API seria externa e específica para cada parceiro.
+Assumi que o _parceiro_ possui uma API para incluir novos colaboradores no benefício. Essa API foi simulada de maneira simplificada em `/server/fakePartnerAPI.js`. Na aplicação real, esta API seria externa e específica para cada parceiro.
 
 ## Páginas
 

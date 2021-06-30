@@ -14,8 +14,6 @@ export function makeServer() {
     routes() {
       // fix issue with next js
       this.passthrough('/_next/static/development/_devPagesManifest.json');
-
-      this.passthrough('/api/partner');
       this.namespace = '/api';
       this.timing = 1000;
 

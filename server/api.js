@@ -2,6 +2,7 @@ import {
   filterEmployeeData,
   validateEmployeeData,
 } from 'utils/inputValidation';
+import { fakePartnerAPI } from './fakePartnerAPI';
 
 export async function getClients() {
   const url = `/api/clients`;
@@ -65,26 +66,12 @@ export async function sendBenefitData(clientId, employeeId, benefitId) {
     throw new Error('Invalid data');
   }
 
-  await fetchPartnerAPI(filterEmployeeData(employee, benefit.requiredFields));
+  await fakePartnerAPI(filterEmployeeData(employee, benefit.requiredFields));
 
   return updateEmployee(clientId, employeeId, {
     ...employee,
     benefitIds: [...employee.benefitIds, benefitId],
   });
-}
-
-async function fetchPartnerAPI(employeeData) {
-  const url = '/api/partner';
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(employeeData),
-  });
-
-  return handleResponse(res);
 }
 
 function handleResponse(res) {
