@@ -45,6 +45,8 @@ Esta página o usuário tem acesso aos dados do colaborador e os benefícios em 
 
 Na seção _dados_, são apresentados apenas os campos realmente necessários. Por exemplo, se nenhum benefício oferecido pela empresa pede o dado "endereço", então esse campo não será apresentado.
 
-Pensando na experiência do usuário, os campos que apresentam problema são indicados com o contorno vermelho no componente do benefício e o botão _Enviar_ fica desativado.
+Pensando na experiência do usuário, os campos que apresentam problema são indicados com o contorno vermelho no componente do benefício e o botão _Enviar_ fica desativado. Além disso, a API também faz uma validação de dados, retornando erro caso os campos não tenham sido preenchidos corretamente.
 
 Eu simplifiquei bastante a validação dos dados, basta que eles estejam preenchidos para serem válidos. No campo _altura_ eu fiz uma função de validação extremamente simples só para ilustrar o conceito e como poderia ser generalizado para os outros campos.
+
+Outra melhoria a ser feita é utilizar uma máscara para formatar os dados (por exemplo, formatar o número de CPF com a separação por pontos).
