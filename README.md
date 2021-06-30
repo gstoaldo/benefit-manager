@@ -43,7 +43,7 @@ Esta página foi construída exclusivamente para o exercício. Na aplicação re
 
 Esta página é onde o usuário tem acesso a um painel geral do cliente/empresa, mostrando os benefícios oferecidos e os colaboradores.
 
-Neste exercício, o botão de adicionar um novo benefício encontra-se desativado.
+Neste exercício, o botão de adicionar um novo benefício encontra-se desativado, mas a aplicação está preparada para receber novos parceiros.
 
 Cada colaborador é representado por um componente que apresenta o nome, CPF e os benefícios ativos. O botão _editar_ leva à página específica do colaborador.
 
@@ -53,9 +53,9 @@ Esta página o usuário tem acesso aos dados do colaborador e os benefícios em 
 
 Na seção _dados_, são apresentados apenas os campos realmente necessários. Por exemplo, se nenhum benefício oferecido pela empresa pede o dado "endereço", então esse campo não será apresentado.
 
-Pensando na experiência do usuário, os campos que apresentam problema são indicados com o contorno vermelho no componente do benefício e o botão _Enviar_ fica desativado. Além disso, a API também faz uma validação de dados, retornando erro caso os campos não tenham sido preenchidos corretamente.
+Pensando na experiência do usuário, os campos que apresentam problema são indicados com o contorno vermelho no componente do benefício e o botão _enviar_ fica desativado. Além disso, a API também faz uma validação de dados, retornando erro caso os campos não tenham sido preenchidos corretamente.
 
-Eu simplifiquei bastante a validação dos dados, basta que eles estejam preenchidos para serem válidos. No campo _altura_ eu fiz uma função de validação extremamente simples só para ilustrar o conceito e como poderia ser generalizado para os outros campos.
+Eu simplifiquei bastante a validação dos dados, basta que eles estejam preenchidos para serem válidos. No campo _altura_, eu fiz uma função de validação extremamente simples só para ilustrar o conceito e como poderia ser generalizado para os outros campos.
 
 Outra melhoria a ser feita é utilizar uma máscara para formatar os dados (por exemplo, formatar o número de CPF com a separação por pontos).
 
