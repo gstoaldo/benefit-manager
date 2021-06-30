@@ -61,4 +61,4 @@ Outra melhoria a ser feita é utilizar uma máscara para formatar os dados (por 
 
 ## Arquitetura
 
-A fim de gerenciar os estados de _loading_ e _error_ ao fazer uma chamada, eu criei um componente `<App />` que envolve toda a aplicação. Ele é responsável por renderizar os componentes que indicam as mensagens de _loading_ ou _error_. Além disso, eu usei o `Context` do React para expor a função `fetchHandler` que pode ser usada para mudar o estado da aplicação ao fazer uma chamada.
+A fim de gerenciar os estados de _loading_ e _error_, eu criei um componente `<App />` que envolve toda a aplicação. Ele é responsável por renderizar os componentes que indicam as mensagens de _loading_ e _error_. Além disso, eu usei o `Context` do React para expor a função `fetchHandler` que pode ser usada para mudar o estado da aplicação ao fazer uma chamada. O custom hook `useFetchHandler` facilita o consumo dessa função.

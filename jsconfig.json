@@ -1,3 +1,4 @@
+// enable absolute imports
 {
   "compilerOptions": {
     "baseUrl": "."
