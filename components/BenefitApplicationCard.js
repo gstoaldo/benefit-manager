@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Card from './Card';
 import Button from 'components/Button';
-import { benefitTypeLabels } from 'utils/labels';
+import { benefitTypeLabels } from 'utils/benefits';
 import { inputLabels } from 'utils/inputs';
 
 const BenefitApplicationCard = ({

@@ -35,6 +35,8 @@ export function fieldIsValid(field, value) {
   const validationFunction =
     {
       height: heightIsValid,
+      // we can add custom validation for each field. The height validation is
+      // just a simple example.
     }[field] || defaultValidationFunction;
 
   return validationFunction(value);
@@ -45,6 +47,8 @@ function defaultValidationFunction(value) {
 }
 
 function heightIsValid(value) {
-  // height must be in cm. This is just a very simple validation example.
+  // height must be in cm, so if the value is less than 30, this should mean
+  // that the user typed the value in meters.
+  // This is just a very simple validation example.
   return value > 30;
 }

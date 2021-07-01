@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { benefitTypeLabels, benefitTypeSymbols } from 'utils/labels';
+import { benefitTypeLabels, benefitTypeSymbols } from 'utils/benefits';
 import Card from './Card';
 
 const BenefitCard = ({ benefit }) => {

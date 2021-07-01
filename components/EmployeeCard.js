@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Card from './Card';
 import LinkButton from './LinkButton';
-import { benefitTypeSymbols } from 'utils/labels';
+import { benefitTypeSymbols } from 'utils/benefits';
 
 const EmployeeCard = ({ employee, benefits, href }) => {
   return (
